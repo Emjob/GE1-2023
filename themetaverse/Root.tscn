@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6m52giexin52"]
+
+[ext_resource type="Script" path="res://Movement.gd" id="1_0sh24"]
+[ext_resource type="Script" path="res://Wall.gd" id="2_4alhk"]
+[ext_resource type="PackedScene" uid="uid://c6xhwirvnwrnp" path="res://Brick.tscn" id="3_3n2sw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_omj1o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ik7m2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pyb3i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3ems"]
+albedo_color = Color(0.372549, 0.635294, 0.156863, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_es1ma"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.871111, 0.491086, 0, -0.491086, 0.871111, 0, 6.44383, 12.3562)
+shadow_enabled = true
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.576252, 2.50023)
+script = ExtResource("1_0sh24")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90888, 2.02085)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("BoxMesh_omj1o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("BoxShape3D_ik7m2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_pyb3i")
+surface_material_override/0 = SubResource("StandardMaterial3D_q3ems")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_es1ma")
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("2_4alhk")
+brickScene = ExtResource("3_3n2sw")
