@@ -35,16 +35,15 @@ mesh = SubResource("BoxMesh_omj1o")
 shape = SubResource("BoxShape3D_ik7m2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("PlaneMesh_pyb3i")
 surface_material_override/0 = SubResource("StandardMaterial3D_q3ems")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_es1ma")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.576252, 0)
 script = ExtResource("2_4alhk")
 brickScene = ExtResource("3_3n2sw")
