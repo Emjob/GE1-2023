@@ -41,3 +41,7 @@ Forward={
 [rendering]
 
 renderer/rendering_method="mobile"
+
+[xr]
+
+openxr/startup_alert=false
