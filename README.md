@@ -22,9 +22,129 @@ Join the class on the World Videophone using the following link:
 
 - [Discord](https://discord.gg/vQEgsb4E)
 
+## Week 5 - Quaternions & the Metaverse
+- [The Archaic Revival - Read the essay "Virtual Reality and Electronic Highs"](https://archive.org/stream/pdfy-CVSFsGW3fYSFP1wM/McKenna%2C%20Terence%20-%20The%20Archaic%20Revival_djvu.txt)
+- [Slides on quaternions](https://drive.google.com/file/d/11-KFbodaAl9dRSs9ljzdDyTDp1QWWnsZ/view?usp=sharing)
+- [Vectors](https://docs.unity3d.com/Manual/UnderstandingVectorArithmetic.html)
+- [https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EX0Q9GTNPkBOvsj8dp0CrUkBXAvfZgElXgGD8KDyv6Rlug?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19&e=OB8TwO](Recording of the class)
+
+My popular Quaternions in Unity Video:
+
+[![YouTube](http://img.youtube.com/vi/IXySkVFNhdk/0.jpg)](http://www.youtube.com/watch?v=IXySkVFNhdk)
+
+An ode to Quaternions
+
+A quaternion is like a vector, but with a "w"
+
+To construct one, use an axis and an angle, that's what we do
+
+For rotations it must be normal, or otherwise its pure
+
+So we normalise, divide by length, just to be sure
+
+To invert a normal quaternion, we negate x, y and z
+
+Multiply quaternion, vector, inverse quaternion and it rotates don't you see
+
+A rotation of 0 radians is the same as two pi
+
+To convert a quaternion to a matrix, we use the API
+
+So here's a health to old Hamilton, your inventor it would appear
+
+And to imaginary numbers floating in the hypersphere
+
+- Dr Bryan Duggan
+
+## Lab
+
+Today lets make this system:
+
+[![YouTube](http://img.youtube.com/vi/utJ5uUouxuA/0.jpg)](http://www.youtube.com/watch?v=utJ5uUouxuA)
+
+The system is a turret AI system for a game such as a tower defence game. In the video below, the red "tower" will turn to face the players tank and start shooting as soon as the player comes in range. To create this system:
+
+- Make the turret from two cubes and set a spawn point for bullets on the turret
+- Add a TurretController component to the turret. Add fields for rotationSpeed and fireRate (and any others you might need)
+- Use a SphereCollider on the turret and set isTrigger to be true
+- Override OnTriggerEnter and OnTriggerStay to detect the player
+- Use quaternions to rotate the turret
+- Use a co-routine to shoot multiple times per second
+
+
+## Week 4 - Vectors
+- [Recording](https://tudublin-my.sharepoint.com/:v:/r/personal/bryan_duggan_tudublin_ie/Documents/Recordings/Game%20Engines%20Class-20231013_140831-Meeting%20Recording.mp4?csf=1&web=1&e=bm3ggk&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19)
+
+## Week 3 
+- [Recording](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EeYq8HOEu7JLk1Ye7TCXIcQBQvlp4_UCS78iR-X323Ox6Q?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19&e=h71mOT)
+
+Lab 
+
+### Learning Outcomes
+- Build a simple agent with perception
+- Develop computation thinking
+- Use trigonometry
+- Use vectors
+- Use the Godot API
+- Practice GDScript
+
+Today you will be making this (click the image for video):
+
+[![YouTube](http://img.youtube.com/vi/kC_W1WBB7uY/0.jpg)](http://www.youtube.com/watch?v=kC_W1WBB7uY)
+
+To start, switch to the master branch of your fork, update your forks to get the starter code and create a new branch for your work today:
+
+```bash
+git checkout master
+git pull upstream master
+git checkout -b mylab4
+```
+
+If you are on a lab computer, you will need to clone your forks. I have updated my version of Unity to be the same as the version installed in the labs, so opening the project should be fast now!
+
+Open the scene lab2 to get the starter scene and code for today. 
+
+What is happening:
+- The red tank has a script attached called AITank that has radius and numWaypoints fields that control the generation of waypoints in a circle around it. These waypoints will be stored in a List. (Like an ArrayList in Java). It draws sphere gizmos so you can see where the waypoints will be.
+- The red tank will move from waypoint to waypoint starting at the 0th one and looping back when it reaches the last waypoint.
+- The red tank prints the messages using the Unity GUI system to indicate:
+    - Whether the blue tank is in front or behind
+    - Whether the front tank is inside a 45 degree FOV
+    - Use the [Godot reference](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html) to figure out what API's to call!
+
+I suggest you work on these tasks:
+
+### Task 1
+
+Add code to OnDrawGizmos in the script AITank.cs to draw gizmos for the waypoints. Use sin and cod to calculate the waypoints. Don't add them to the list here, just draw a sphere gizmos at the position where each waypoint should be
+
+### Task 2
+
+Write code in Awake that populates the waypoints List with the waypoints. Use a for loop, sin, cos and ```transform.TransformPoint```. 
+
+### Task 3
+
+Write code in Update to move the AITank towards the current waypoint. When it comes within 1 unit of the waypoint, you should advance to the next waypoint. You can use transform.Translate, transform.Rotate, transform.position =, transform.rotation = Quaternion.LookRotation. Look up the Unity documentation to see what these API's do
+
+### Task 4
+Write code in Update to print whether the player tank is in front or or behind the AI tank
+
+### Task 5
+Write code in Update to print whether the player tank is inside a 45 degree FOV of the AI tank and whether the player tank is in range of the AI tank. In range means that the player tank is < 10 units away from the AI tank
+
+You will use the following API's in your solution:
+
+```C#
+Quaternion.Slerp
+Quaternion.LookRotation
+Vector3.Normalize
+Vector3.Dot
+Transform.Translate
+```
+
 ## Week 2 - Learning Godot
 - [Trigonometry Problem Set](https://1.cdn.edl.io/IDqRlI8C9dRkoqehbbdHBrcGT6m87gkCQuMKTkp0U7JvHvuG.pdf)
-- [Week 2 Recording](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/ESfPwPySin1Aq7jnYK7AtbAB_UC2h7Cm4a-vox1_c4spxQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19&e=Bo2kzI)
+- [Week 2 Recording](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EYkCd5ALm3BFvsAamhfMrYUBvxxlS0AYrU8oZ23hvNwMVg?e=zhZ2D1&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19)
 
 ### Lab 
 
